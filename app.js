@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//导入路由配置
+const indexRouter = require('./routes/index');
+const cateRouter = require('./routes/cate');
+const articleRouter = require('./routes/article');
+const infoRouter = require('./routes/info');
+const adminRouter = require('./routes/admin');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -18,9 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+//注册路由
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/cate', cateRouter);
+app.use('/article', articleRouter);
+app.use('/info', infoRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
