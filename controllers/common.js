@@ -6,6 +6,7 @@
  * @Description  : 公共方法
  * @FilePath     : \blog-admin-api\controllers\common.js
  */
+
 const async = require('async')
 const Constant = require('../constant/constant')
 const exportObj = {
