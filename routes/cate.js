@@ -2,9 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
-// const CateController = require('../controllers/cate')
+const CateController = require('../controllers/cate')
 // 分类列表
-// router.get('/', CateController.list)
+router.get('/', CateController.list)
 // 单条分类路由
 // router.get('/:id', CateController.info)
 // 添加分类路由
