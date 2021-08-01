@@ -78,7 +78,7 @@ function list(req, res) {
             // 查询结果处理
             // 设定一个空数组list，用来存放最终的结果
             let list = []
-            result.rows.forEach((v, i) => {
+            result.rows.forEach(v => {
               // 遍历SQL查询出来的结果，处理后装入list
               let obj = {
                 id: v.id,
@@ -159,10 +159,134 @@ function info(req, res) {
 }
 
 // 新增分类
-function add(req, res) {}
+function add(req, res) {
+  //  定义一个返回对象
+  let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
+  //  定义一个async任务
+  let tasks = {
+    //  校验参数方法
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['name'], cb)
+    },
+    //  添加方法，依赖校验参数方法
+    add: [
+      'checkParams',
+      (results, cb) => {
+        // 使用Cate的model中的方法插入到数据库中
+        CateModel.create({
+          name: req.body.name
+        })
+          .then(function (result) {
+            // 插入结果处理
+            console.log(result)
+            // 继续后续操作
+            cb(null)
+          })
+          .catch(function (err) {
+            // 打印操作日志
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
+  //  执行公共方法中的autoFn方法，返回数据
+  Common.autoFn(tasks, res, resObj)
+}
 
 // 修改分类
-function update(req, res) {}
+function update(req, res) {
+  //  定义一个返回对象
+  let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
+  //  定义一个async任务
+  let tasks = {
+    //  校验参数方法
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['id', 'name'], cb)
+    },
+    //  更新方法，依赖校验参数方法
+    update: [
+      'checkParams',
+      (results, cb) => {
+        // 使用cate的model中的方法更新
+        CateModel.update(
+          {
+            name: req.body.name
+          },
+          {
+            where: {
+              id: req.body.id
+            }
+          }
+        )
+          .then(result => {
+            // 更新结果处理
+            if (result[0]) {
+              // 更新成功
+              cb(null)
+            } else {
+              // 更新失败，传递错误信息到async的最终方法中
+              cb(Constant.CATE_NOT_EXSIT)
+            }
+          })
+          .catch(function (err) {
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
+  //  执行公共方法中的autofn方法，返回数据
+  Common.autoFn(tasks, res, resObj)
+}
 
 // 删除分类
-function remove(req, res) {}
+function remove(req, res) {
+  //  定义一个返回对象
+  let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
+  //  定义一个async任务
+  let tasks = {
+    //  校验参数方法
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['id'], cb)
+    },
+    //  删除方法
+    delete: [
+      'checkParams',
+      (results, cb) => {
+        // 使用cate的model中的方法更新
+        CateModel.destroy({
+          where: {
+            id: req.body.id
+          }
+        })
+          .then(function (result) {
+            // 删除结果处理
+            if (result) {
+              // 如果删除成功
+              // 继续后面的操作
+              cb(null)
+            } else {
+              // 删除失败，传递错误信息到async的最终方法中
+              cb(Constant.CATE_NOT_EXSIT)
+            }
+          })
+          .catch(function (err) {
+            // 错误处理
+            console.log(err)
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
+  //  执行公共方法中的autofn方法，返回数据
+  Common.autoFn(tasks, res, resObj)
+}
