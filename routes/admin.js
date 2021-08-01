@@ -1,3 +1,11 @@
+/*
+ * @Author       : xujian
+ * @LastEditors  : xujian
+ * @Date         : 2021-07-22 22:14:24
+ * @LastEditTime : 2021-08-01 22:09:12
+ * @Description  : file content
+ * @FilePath     : \blog-admin-api\routes\admin.js
+ */
 const express = require('express')
 const router = express.Router()
 
