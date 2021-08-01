@@ -1,3 +1,11 @@
+/*
+ * @Author       : xujian
+ * @LastEditors  : xujian
+ * @Date         : 2021-07-22 21:57:59
+ * @LastEditTime : 2021-08-01 22:08:55
+ * @Description  : file content
+ * @FilePath     : \blog-admin-api\routes\cate.js
+ */
 // 分类模块路由处理
 const express = require('express')
 const router = express.Router()
