@@ -119,7 +119,55 @@ function info(req, res) {
   //    定义一个返回对象
   let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
   //    定义一个async任务
-  let tasks = {}
+  let tasks = {
+    // 校验参数方法
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.params, ['id'], cb)
+    },
+    // 查询方法，依赖校验参数方法
+    query: [
+      'checkParams',
+      (results, cb) => {
+        // 使用article的model中的方法查询
+        ArticleModel.findByPk(req.params.id, {
+          include: [
+            {
+              model: CateModel
+            }
+          ]
+        })
+          .then(function (result) {
+            // 查询结果处理
+            if (result) {
+              // 将查询到的结果给返回对象赋值
+              resObj.data = {
+                id: result.id,
+                name: result.name,
+                desc: result.desc,
+                content: result.content,
+                cate: result.cate,
+                cateName: result.Cate.name, // 获取联表查询中的cate表中的name
+                createdAt: dateFormat(result.createdAt, 'yyyy-MM-dd HH:mm:ss')
+              }
+              // 继续后续操作
+              cb(null)
+            } else {
+              // 如果查询失败，传递错误信息到async的最终方法中
+              cb(Constant.ARTICLE_NOT_EXSIT)
+            }
+          })
+          .catch(function (err) {
+            // 错误处理
+            // 打印错误日志
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
   //    调用公共方法中的autofn，返回数据
   Common.autoFn(tasks, res, resObj)
 }
@@ -134,7 +182,38 @@ function add(req, res) {
   //    定义一个返回对象
   let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
   //    定义一个async任务
-  let tasks = {}
+  let tasks = {
+    //  校验参数
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['title', 'cate', 'desc', 'content'], cb)
+    },
+    add: [
+      'checkParams',
+      (results, cb) => {
+        // 使用article的model中的方法插入到数据库中
+        ArticleModel.create({
+          title: req.body.title,
+          desc: req.body.desc,
+          content: req.body.content,
+          cate: req.body.cate
+        })
+          .then(function () {
+            // 插入结果处理
+            // 继续后面操作
+            cb(null)
+          })
+          .catch(function (err) {
+            // 错误处理
+            // 打印错误日志
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
   //    调用公共方法中的autofn，返回数据
   Common.autoFn(tasks, res, resObj)
 }
@@ -149,7 +228,52 @@ function update(req, res) {
   //    定义一个返回对象
   let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
   //    定义一个async任务
-  let tasks = {}
+  let tasks = {
+    //  校验参数
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['id', 'title', 'cate', 'desc', 'content'], cb)
+    },
+    // 更新方法，依赖校验参数方法
+    update: [
+      'checkParams',
+      (results, cb) => {
+        //  使用article的model中的方法更新
+        ArticleModel.update(
+          {
+            title: req.body.title,
+            desc: req.body.desc,
+            content: req.body.content,
+            cate: req.body.cate
+          },
+          {
+            where: {
+              id: req.body.id
+            }
+          }
+        )
+          .then(function (result) {
+            // 更新结果处理
+            if (result[0]) {
+              // 如果更新成功
+              // 继续后续操作
+              cb(null)
+            } else {
+              // 更新失败，传递错误信息到async的最终方法中
+              cb(Constant.ARTICLE_NOT_EXSIT)
+            }
+          })
+          .catch(function (err) {
+            // 错误处理
+            // 打印错误日志
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
   //    调用公共方法中的autofn，返回数据
   Common.autoFn(tasks, res, resObj)
 }
@@ -164,7 +288,44 @@ function remove(req, res) {
   //    定义一个返回对象
   let resObj = Common.clone(Constant.DEFAULT_SUCCESS)
   //    定义一个async任务
-  let tasks = {}
+  let tasks = {
+    //  校验参数
+    checkParams: cb => {
+      // 调用公共方法中的校验参数方法，如果成功则继续后面的操作
+      // 如果失败则传递错误信息到async的最终方法中
+      Common.checkParams(req.body, ['id'], cb)
+    },
+    //  删除方法，依赖校验参数方法
+    remove: [
+      'checkParams',
+      (results, cb) => {
+        //  使用article的model中的方法更新
+        ArticleModel.destroy({
+          where: {
+            id: req.body.id
+          }
+        })
+          .then(function (result) {
+            // 删除结果处理
+            if (result) {
+              // 如果删除成功
+              // 继续后续操作
+              cb(null)
+            } else {
+              // 如果删除失败，则传递错误信息到async的最终方法中
+              cb(Constant.ARTICLE_NOT_EXSIT)
+            }
+          })
+          .catch(function (err) {
+            // 错误处理
+            // 打印错误日志
+            console.log(err)
+            // 传递错误信息到async的最终方法中
+            cb(Constant.DEFAULT_ERROR)
+          })
+      }
+    ]
+  }
   //    调用公共方法中的autofn，返回数据
   Common.autoFn(tasks, res, resObj)
 }
