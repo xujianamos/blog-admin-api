@@ -1,0 +1,712 @@
+{
+	"info": {
+		"_postman_id": "0bd212a0-a9fc-4c57-ad36-367af8993147",
+		"name": "blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "分类管理模块",
+			"item": [
+				{
+					"name": "获取分类列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3NjU3MjM2LCJleHAiOjE2Mjc2NjA4MzZ9.UZi7GwCJ-zafw1Zr494LWcZfCnOvRv9lLTh4aywNZn4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/cate?page=1&rows=4",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"cate"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "分类信息查询",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3NjU3MjM2LCJleHAiOjE2Mjc2NjA4MzZ9.UZi7GwCJ-zafw1Zr494LWcZfCnOvRv9lLTh4aywNZn4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/cate/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"cate",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加分类接口",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3ODI1NTcwLCJleHAiOjE2Mjc4MjkxNzB9.JMa40HVRMkjHeFTAsdR6yihdj0Z9DJuAzVtI_8miOj8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "新分类",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/cate",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"cate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改分类接口",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3ODI1NTcwLCJleHAiOjE2Mjc4MjkxNzB9.JMa40HVRMkjHeFTAsdR6yihdj0Z9DJuAzVtI_8miOj8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "修改新分类",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/cate",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"cate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除分类接口",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3ODI1NTcwLCJleHAiOjE2Mjc4MjkxNzB9.JMa40HVRMkjHeFTAsdR6yihdj0Z9DJuAzVtI_8miOj8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/cate",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"cate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "文章管理模块",
+			"item": [
+				{
+					"name": "查询文章列表接口",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3ODI1NTcwLCJleHAiOjE2Mjc4MjkxNzB9.JMa40HVRMkjHeFTAsdR6yihdj0Z9DJuAzVtI_8miOj8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/article?page=1&rows=2",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"article"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "单条文章信息接口",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTA3OTg3LCJleHAiOjE2Mjc5MTE1ODd9.O7tWLrhvjRGywm3-5LgcfTVm7T1Mj_nSkWWtkLXH9HU",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/article/2",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"article",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新增文章接口",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTE1MjE2LCJleHAiOjE2Mjc5MTg4MTZ9.hZZUg1yEc9k5dF3AUIPiwok169wNMK51cWd1ipoAoa0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "测试文章6",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "测试文章",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "测试文章",
+									"type": "text"
+								},
+								{
+									"key": "cate",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/article",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改文章接口",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTE1MjE2LCJleHAiOjE2Mjc5MTg4MTZ9.hZZUg1yEc9k5dF3AUIPiwok169wNMK51cWd1ipoAoa0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "修改文章",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "修改文章描述",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "修改文章",
+									"type": "text"
+								},
+								{
+									"key": "cate",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/article",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除文章接口",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTE1MjE2LCJleHAiOjE2Mjc5MTg4MTZ9.hZZUg1yEc9k5dF3AUIPiwok169wNMK51cWd1ipoAoa0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "8",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/article",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "博客信息模块",
+			"item": [
+				{
+					"name": "查看博客信息接口",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk0MDcyLCJleHAiOjE2Mjc5OTc2NzJ9.4AtVt4O5HceRFdcXS0ClPfhEdG0ghfzyHsU4LZauLps",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/info",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改博客信息接口",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk0MDcyLCJleHAiOjE2Mjc5OTc2NzJ9.4AtVt4O5HceRFdcXS0ClPfhEdG0ghfzyHsU4LZauLps",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "xx博客",
+									"type": "text"
+								},
+								{
+									"key": "subtitle",
+									"value": "这里是标题",
+									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "关于我们的内容",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/info",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "管理员模块",
+			"item": [
+				{
+					"name": "管理员列表接口",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk2MDYyLCJleHAiOjE2Mjc5OTk2NjJ9.HQjFpP1qzgjYp0R8NP5HHb_0p-76XIurSD0udYwa0M4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/admin?page=1&rows=10",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"admin"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "rows",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "单条管理员信息接口",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk2MDYyLCJleHAiOjE2Mjc5OTk2NjJ9.HQjFpP1qzgjYp0R8NP5HHb_0p-76XIurSD0udYwa0M4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:9004/admin/1",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"admin",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "添加管理员接口",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk2MDYyLCJleHAiOjE2Mjc5OTk2NjJ9.HQjFpP1qzgjYp0R8NP5HHb_0p-76XIurSD0udYwa0M4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "实时视",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "dfdaf",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改管理员接口",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk2MDYyLCJleHAiOjE2Mjc5OTk2NjJ9.HQjFpP1qzgjYp0R8NP5HHb_0p-76XIurSD0udYwa0M4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "修改",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "dfdaf",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除管理员接口",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI3OTk2MDYyLCJleHAiOjE2Mjc5OTk2NjJ9.HQjFpP1qzgjYp0R8NP5HHb_0p-76XIurSD0udYwa0M4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "修改",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "dfdaf",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:9004/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "9004",
+							"path": [
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "登录接口",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:9004/login",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
